@@ -34,6 +34,10 @@ pub(crate) struct Convert {
     /// Outbound document format. Possible values are: `markdown`, `ast-json`, and `ast-yaml`.
     #[clap(long)]
     to: DocumentFormat,
+
+    /// Optional width for the markdown output. If not specified, 80 characters will be used.
+    #[clap(long, default_value_t = 80)]
+    markdown_width: usize,
 }
 
 impl Convert {
@@ -61,7 +65,7 @@ impl Convert {
     }
 
     fn render_markdown(&self, doc: markdown_ppp::ast::Document) -> String {
-        let config = markdown_ppp::printer::config::Config::default();
+        let config = markdown_ppp::printer::config::Config::with_width(self.markdown_width);
         markdown_ppp::printer::render_markdown(&doc, config)
     }
 

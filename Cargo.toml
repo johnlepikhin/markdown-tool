@@ -3,7 +3,7 @@ authors = ["Evgenii Lepikhin <johnlepikhin@gmail.com>"]
 edition = "2021"
 name = "markdown-tool"
 version = "0.1.4"
-rust-version = "1.65"
+rust-version = "1.70"
 
 description = "A CLI utility for converting Markdown into AST and vice versa"
 readme = "README.md"
