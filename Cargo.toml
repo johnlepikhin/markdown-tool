@@ -49,13 +49,3 @@ assets = [
   ["README.md", "usr/share/doc/markdown-tool/README.md", "644"],
   ["LICENSE", "usr/share/doc/markdown-tool/LICENSE", "644"],
 ]
-
-[package.metadata.rpm]
-package = "markdown-tool"
-
-[package.metadata.rpm.targets]
-markdown-tool = { path = "/usr/bin/markdown-tool" }
-
-[package.metadata.rpm.files]
-"README.md" = { path = "/usr/share/doc/markdown-tool/README.md" }
-"LICENSE" = { path = "/usr/share/licenses/markdown-tool/LICENSE" }
