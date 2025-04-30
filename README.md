@@ -23,10 +23,6 @@ Alternatively, download pre-built packages:
   ```bash
   sudo dpkg -i markdown-tool_<VERSION>_<ARCH>.deb
   ```
-- RPM (`.rpm`):
-  ```bash
-  sudo rpm -i markdown-tool-<VERSION>.<ARCH>.rpm
-  ```
 
 ## Usage
 
