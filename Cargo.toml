@@ -12,7 +12,7 @@ repository = "https://github.com/johnlepikhin/markdown-tool"
 homepage = "https://github.com/johnlepikhin/markdown-tool#readme"
 documentation = "https://docs.rs/markdown-tool"
 keywords = ["markdown", "converter", "cli", "ast"]
-categories = ["command-line-utilities", "formatting", "markup"]
+categories = ["command-line-utilities", "text-processing", "value-formatting"]
 
 [dependencies]
 anyhow = "1.0"
