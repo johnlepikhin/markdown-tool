@@ -66,6 +66,12 @@ Convert YAML AST to Markdown:
 markdown-tool convert --from ast-yaml --to markdown < ast.yaml > output.md
 ```
 
+Pretty-print Markdown:
+
+```bash
+markdown-tool convert --from markdown --to markdown < unformatted.md > formatted.md
+```
+
 ## Contributing
 
 Contributions, issues, and feature requests are welcome! Feel free to open an issue or submit a pull request on
