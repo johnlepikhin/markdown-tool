@@ -68,6 +68,10 @@ Pretty-print Markdown:
 markdown-tool convert --from markdown --to markdown < unformatted.md > formatted.md
 ```
 
+## 📚 Documentation
+
+- [AI-generated documentation](https://deepwiki.com/johnlepikhin/markdown-tool)
+
 ## Contributing
 
 Contributions, issues, and feature requests are welcome! Feel free to open an issue or submit a pull request on
