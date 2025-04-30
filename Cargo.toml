@@ -1,0 +1,61 @@
+[package]
+authors = ["Evgenii Lepikhin <johnlepikhin@gmail.com>"]
+edition = "2021"
+name = "markdown-tool"
+version = "0.1.0"
+rust-version = "1.65"
+
+description = "A CLI utility for converting Markdown into AST and vice versa"
+readme = "README.md"
+license = "MIT"
+repository = "https://github.com/johnlepikhin/markdown-tool"
+homepage = "https://github.com/johnlepikhin/markdown-tool#readme"
+documentation = "https://docs.rs/markdown-tool"
+keywords = ["markdown", "converter", "cli", "ast"]
+categories = ["command-line-utilities", "formatting", "markup"]
+
+[dependencies]
+anyhow = "1.0"
+clap = {version = "4.0", features = ["derive"]}
+markdown-ppp = { version = "1.0.1", features = ["ast-serde"] }
+serde = {version = "1.0", features = ["derive"]}
+serde_json = "1.0"
+serde_yaml = "0.9"
+structdoc = "0.1.4"
+
+[profile.release]
+lto = true
+codegen-units = 1
+debug = false
+strip = true
+
+[badges.github-actions]
+repository = "johnlepikhin/markdown-tool"
+branch     = "main"
+workflow   = "CI"
+
+[badges.maintenance]
+status = "actively-developed"
+
+[package.metadata.deb]
+maintainer = "Evgenii Lepikhin <johnlepikhin@gmail.com>"
+copyright = "2025, Evgenii Lepikhin"
+license-file = ["LICENSE", "4"]
+depends = "$auto"
+section = "utility"
+priority = "optional"
+assets = [
+  ["target/release/markdown-tool",  "usr/bin/", "755"],
+  ["README.md", "usr/share/doc/markdown-tool/README.md", "644"],
+  ["LICENSE", "usr/share/doc/markdown-tool/LICENSE", "644"],
+]
+
+[package.metadata.rpm]
+package = "markdown-tool"
+
+[package.metadata.rpm.targets]
+markdown-tool = { path = "/usr/bin/markdown-tool" }
+
+[package.metadata.rpm.files]
+"README.md" = { path = "/usr/share/doc/markdown-tool/README.md" }
+"LICENSE" = { path = "/usr/share/licenses/markdown-tool/LICENSE" }
