@@ -45,6 +45,10 @@ jobs:
         with:
           toolchain: stable
           override: true
+      - name: Install packaging tools
+        run: |
+          cargo install cargo-deb --locked
+          cargo install cargo-rpm --locked
       - name: Build Release
         run: cargo build --release
       - name: Build Debian package
