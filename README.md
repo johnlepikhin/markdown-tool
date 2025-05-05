@@ -5,7 +5,7 @@ syntax tree (AST) representations, and vice versa.
 
 ## Features
 
-- Convert between Markdown, JSON-based AST, and YAML-based AST formats
+- Convert between Markdown, HTML, JSON-based AST, and YAML-based AST formats
 - Lightweight, zero-dependency CLI
 - Easily scriptable in CI/CD workflows or shell scripts
 
@@ -31,7 +31,7 @@ Usage: markdown-tool convert --from <FROM> --to <TO>
 
 Options:
       --from <FROM>  Inbound document format. Possible values are: `markdown`, `ast-json`, and `ast-yaml`
-      --to <TO>      Outbound document format. Possible values are: `markdown`, `ast-json`, and `ast-yaml`
+      --to <TO>      Outbound document format. Possible values are: `markdown`, `html`, `ast-json`, and `ast-yaml`
 ```
 
 ### Supported Formats
@@ -39,6 +39,7 @@ Options:
 | Key        | Description                         |
 | ---------- | ----------------------------------- |
 | markdown   | Standard Markdown text              |
+| html       | HTML-formatted text                 |
 | ast-json   | JSON-formatted abstract syntax tree |
 | ast-yaml   | YAML-formatted abstract syntax tree |
 
@@ -48,6 +49,12 @@ Convert a Markdown file to JSON AST:
 
 ```bash
 markdown-tool convert --from markdown --to ast-json < input.md > ast.json
+```
+
+Convert a Markdown file to HTML string:
+
+```bash
+markdown-tool convert --from markdown --to html < input.md > output.html
 ```
 
 Convert JSON AST back to Markdown:

@@ -17,7 +17,7 @@ categories = ["command-line-utilities", "text-processing", "value-formatting"]
 [dependencies]
 anyhow = "1.0"
 clap = {version = "4.0", features = ["derive"]}
-markdown-ppp = { version = "1.0.2", features = ["ast-serde"] }
+markdown-ppp = { version = "1.0.3", features = ["ast-serde"] }
 serde = {version = "1.0", features = ["derive"]}
 serde_json = "1.0"
 serde_yaml = "0.9"

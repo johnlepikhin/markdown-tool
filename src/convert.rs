@@ -9,6 +9,7 @@ pub(crate) enum DocumentFormat {
     Markdown,
     AstJson,
     AstYaml,
+    Html,
 }
 
 impl FromStr for DocumentFormat {
@@ -19,6 +20,7 @@ impl FromStr for DocumentFormat {
             "markdown" => Ok(DocumentFormat::Markdown),
             "ast-json" => Ok(DocumentFormat::AstJson),
             "ast-yaml" => Ok(DocumentFormat::AstYaml),
+            "html" => Ok(DocumentFormat::Html),
             _ => Err(format!("Invalid format: {}", s)),
         }
     }
@@ -31,7 +33,7 @@ pub(crate) struct Convert {
     #[clap(long)]
     from: DocumentFormat,
 
-    /// Outbound document format. Possible values are: `markdown`, `ast-json`, and `ast-yaml`.
+    /// Outbound document format. Possible values are: `markdown`, `html`, `ast-json`, and `ast-yaml`.
     #[clap(long)]
     to: DocumentFormat,
 
@@ -69,6 +71,11 @@ impl Convert {
         markdown_ppp::printer::render_markdown(&doc, config)
     }
 
+    fn render_html(&self, doc: markdown_ppp::ast::Document) -> String {
+        let config = markdown_ppp::html_printer::config::Config::default();
+        markdown_ppp::html_printer::render_html(&doc, config)
+    }
+
     fn render_ast_json(&self, doc: markdown_ppp::ast::Document) -> String {
         serde_json::to_string(&doc).unwrap()
     }
@@ -83,12 +90,16 @@ impl Convert {
             DocumentFormat::Markdown => self.parse_markdown(&input)?,
             DocumentFormat::AstJson => self.parse_ast_json(&input)?,
             DocumentFormat::AstYaml => self.parse_ast_yaml(&input)?,
+            DocumentFormat::Html => {
+                return Err(anyhow::anyhow!("HTML input format is not supported yet"));
+            }
         };
 
         let result = match self.to {
             DocumentFormat::Markdown => self.render_markdown(ast),
             DocumentFormat::AstJson => self.render_ast_json(ast),
             DocumentFormat::AstYaml => self.render_ast_yaml(ast),
+            DocumentFormat::Html => self.render_html(ast),
         };
 
         println!("{}", result);
