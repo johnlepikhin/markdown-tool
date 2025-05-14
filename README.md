@@ -1,3 +1,9 @@
+[![crates.io](https://img.shields.io/crates/v/markdown-tool.svg)](https://crates.io/crates/markdown-tool)
+[![docs.rs](https://docs.rs/markdown-tool/badge.svg)](https://docs.rs/markdown-tool)
+[![CI](https://github.com/johnlepikhin/markdown-tool/actions/workflows/ci.yml/badge.svg)](https://github.com/johnlepikhin/markdown-tool/actions)
+[![License: MIT](https://img.shields.io/crates/l/markdown-tool.svg)](https://github.com/johnlepikhin/markdown-tool/blob/main/LICENSE)
+
+
 # markdown-tool
 
 `markdown-tool` is a simple command-line utility for converting Markdown documents to various formats and abstract
