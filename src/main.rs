@@ -28,7 +28,7 @@ impl Application {
 
     pub fn run(&self) {
         if let Err(err) = self.run_command() {
-            eprintln!("Failed with error: {:#}", err);
+            eprintln!("Failed with error: {err:#}");
         }
     }
 }

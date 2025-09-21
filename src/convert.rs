@@ -21,7 +21,7 @@ impl FromStr for DocumentFormat {
             "ast-json" => Ok(DocumentFormat::AstJson),
             "ast-yaml" => Ok(DocumentFormat::AstYaml),
             "html" => Ok(DocumentFormat::Html),
-            _ => Err(format!("Invalid format: {}", s)),
+            _ => Err(format!("Invalid format: {s}")),
         }
     }
 }
@@ -52,7 +52,7 @@ impl Convert {
     fn parse_markdown(&self, input: &str) -> Result<markdown_ppp::ast::Document> {
         let state = markdown_ppp::parser::MarkdownParserState::default();
         let r = markdown_ppp::parser::parse_markdown(state, input)
-            .map_err(|err| anyhow::anyhow!("{}", err.to_string()))?;
+            .map_err(|err| anyhow::anyhow!("{err}"))?;
         Ok(r)
     }
 
@@ -102,7 +102,7 @@ impl Convert {
             DocumentFormat::Html => self.render_html(ast),
         };
 
-        println!("{}", result);
+        println!("{result}");
 
         Ok(())
     }
