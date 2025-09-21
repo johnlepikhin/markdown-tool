@@ -67,7 +67,7 @@ impl Convert {
     }
 
     fn render_markdown(&self, doc: markdown_ppp::ast::Document) -> String {
-        let config = markdown_ppp::printer::config::Config::with_width(self.markdown_width);
+        let config = markdown_ppp::printer::config::Config::default().with_width(self.markdown_width);
         markdown_ppp::printer::render_markdown(&doc, config)
     }
 

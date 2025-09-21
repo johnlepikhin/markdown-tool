@@ -2,7 +2,7 @@
 authors = ["Evgenii Lepikhin <johnlepikhin@gmail.com>"]
 edition = "2021"
 name = "markdown-tool"
-version = "1.0.0"
+version = "1.0.1"
 rust-version = "1.70"
 
 description = "A CLI utility for converting Markdown into AST and vice versa"
@@ -17,7 +17,7 @@ categories = ["command-line-utilities", "text-processing", "value-formatting"]
 [dependencies]
 anyhow = "1.0"
 clap = {version = "4.0", features = ["derive"]}
-markdown-ppp = { version = "1.0.3", features = ["ast-serde"] }
+markdown-ppp = { version = "2.2", features = ["ast-serde"] }
 serde = {version = "1.0", features = ["derive"]}
 serde_json = "1.0"
 serde_yaml = "0.9"
