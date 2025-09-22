@@ -1,4 +1,6 @@
-mod convert;
+mod commands;
+mod config;
+mod input;
 
 use anyhow::Result;
 use clap::{Parser, Subcommand};
@@ -6,8 +8,9 @@ use clap::{Parser, Subcommand};
 /// Subcommand for the application
 #[derive(Subcommand)]
 enum CommandLine {
-    /// Convert markdown to other formats and vice versa
-    Convert(crate::convert::Convert),
+    /// Convert to various output formats
+    #[clap(name = "convert-to")]
+    ConvertTo(crate::commands::ConvertTo),
 }
 
 /// markdown-tool - a tool for converting markdown files to other formats
@@ -22,13 +25,14 @@ struct Application {
 impl Application {
     fn run_command(&self) -> Result<()> {
         match &self.command {
-            CommandLine::Convert(convert) => convert.run(),
+            CommandLine::ConvertTo(convert_to) => convert_to.run(),
         }
     }
 
     pub fn run(&self) {
         if let Err(err) = self.run_command() {
             eprintln!("Failed with error: {err:#}");
+            std::process::exit(1);
         }
     }
 }
