@@ -28,9 +28,8 @@ impl TestCommand {
             .expect("Failed to start command");
 
         if let Some(stdin) = child.stdin.as_mut() {
-            stdin
-                .write_all(input.as_bytes())
-                .expect("Failed to write to stdin");
+            // Ignore BrokenPipe errors - the process might exit early for error cases
+            let _ = stdin.write_all(input.as_bytes());
         }
 
         child.wait_with_output().expect("Failed to read output")
