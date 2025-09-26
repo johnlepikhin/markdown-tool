@@ -1,4 +1,4 @@
-use super::{assert_output_contains, assert_success, TestCommand};
+use super::{assert_success, TestCommand};
 
 #[test]
 fn test_convert_to_ast_json() {

@@ -116,8 +116,7 @@ fn test_convert_to_latex_all_table_styles() {
         let stdout = String::from_utf8_lossy(&output.stdout);
         assert!(
             !stdout.is_empty(),
-            "Output should not be empty for style: {}",
-            style
+            "Output should not be empty for style: {style}"
         );
     }
 }
@@ -136,13 +135,11 @@ fn test_convert_to_latex_all_code_styles() {
         let stdout = String::from_utf8_lossy(&output.stdout);
         assert!(
             !stdout.is_empty(),
-            "Output should not be empty for style: {}",
-            style
+            "Output should not be empty for style: {style}"
         );
         assert!(
             stdout.contains("test"),
-            "Code content should be preserved for style: {}",
-            style
+            "Code content should be preserved for style: {style}"
         );
     }
 }

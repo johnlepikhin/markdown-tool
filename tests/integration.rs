@@ -59,22 +59,14 @@ fn test_all_output_formats() {
     for (format, expected_tokens) in formats {
         let output = cmd.run_with_input(&["convert-to", format], input);
 
-        assert!(output.status.success(), "Format {} should succeed", format);
+        assert!(output.status.success(), "Format {format} should succeed");
 
         let result = String::from_utf8_lossy(&output.stdout);
-        assert!(
-            !result.is_empty(),
-            "Format {} should produce output",
-            format
-        );
+        assert!(!result.is_empty(), "Format {format} should produce output");
 
         // Check that output contains expected format-specific tokens
         let has_tokens = expected_tokens.iter().any(|token| result.contains(token));
-        assert!(
-            has_tokens,
-            "Format {} should contain expected tokens",
-            format
-        );
+        assert!(has_tokens, "Format {format} should contain expected tokens");
     }
 }
 
@@ -94,15 +86,13 @@ fn test_file_fixture_processing() {
 
         assert!(
             output.status.success(),
-            "Sample file conversion to {} should succeed",
-            format
+            "Sample file conversion to {format} should succeed"
         );
 
         let result = String::from_utf8_lossy(&output.stdout);
         assert!(
             !result.is_empty(),
-            "Sample file conversion to {} should produce output",
-            format
+            "Sample file conversion to {format} should produce output"
         );
 
         // Should contain some content from the original
@@ -110,8 +100,7 @@ fn test_file_fixture_processing() {
             result.to_lowercase().contains("sample")
                 || result.to_lowercase().contains("document")
                 || result.to_lowercase().contains("bold"),
-            "Converted {} should contain original content",
-            format
+            "Converted {format} should contain original content"
         );
     }
 }

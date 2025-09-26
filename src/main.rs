@@ -11,6 +11,8 @@ enum CommandLine {
     /// Convert to various output formats
     #[clap(name = "convert-to")]
     ConvertTo(crate::commands::ConvertTo),
+    /// Format markdown files
+    Format(crate::commands::Format),
 }
 
 /// markdown-tool - a tool for converting markdown files to other formats
@@ -26,6 +28,7 @@ impl Application {
     fn run_command(&self) -> Result<()> {
         match &self.command {
             CommandLine::ConvertTo(convert_to) => convert_to.run(),
+            CommandLine::Format(format) => format.run(),
         }
     }
 

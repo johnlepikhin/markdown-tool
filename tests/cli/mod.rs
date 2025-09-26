@@ -44,6 +44,7 @@ impl TestCommand {
     }
 }
 
+#[allow(dead_code)]
 pub fn create_temp_file(content: &str) -> NamedTempFile {
     let mut file = NamedTempFile::new().expect("Failed to create temp file");
     file.write_all(content.as_bytes())
@@ -55,15 +56,13 @@ pub fn assert_output_contains(output: &std::process::Output, expected: &str) {
     let stdout = String::from_utf8_lossy(&output.stdout);
     assert!(
         stdout.contains(expected),
-        "Output does not contain expected text.\nExpected: {}\nActual: {}",
-        expected,
-        stdout
+        "Output does not contain expected text.\nExpected: {expected}\nActual: {stdout}"
     );
 }
 
 pub fn assert_success(output: &std::process::Output) {
     if !output.status.success() {
         let stderr = String::from_utf8_lossy(&output.stderr);
-        panic!("Command failed with stderr: {}", stderr);
+        panic!("Command failed with stderr: {stderr}");
     }
 }
