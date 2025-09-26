@@ -17,12 +17,11 @@ jobs:
     name: Code Checks
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Set up Rust
-        uses: actions-rs/toolchain@v1
+        uses: dtolnay/rust-toolchain@stable
         with:
-          toolchain: stable
-          override: true
+          components: rustfmt, clippy
       - name: Cache Cargo registry
         uses: actions/cache@v3
         with:
@@ -43,12 +42,11 @@ jobs:
     needs: checks
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Set up Rust
-        uses: actions-rs/toolchain@v1
+        uses: dtolnay/rust-toolchain@stable
         with:
-          toolchain: stable
-          override: true
+          components: rustfmt, clippy
       - name: Install packaging tools
         run: |
           cargo install cargo-deb --locked
@@ -59,30 +57,14 @@ jobs:
       - name: Find Debian package
         run: echo "DEB_PATH=target/debian/$(ls target/debian/*.deb | xargs -n1 basename)" >> $GITHUB_ENV
       - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
+        uses: softprops/action-gh-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
+          name: Release ${{ github.ref }}
           draft: false
           prerelease: false
-      - name: Upload binary asset
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: target/release/markdown-tool
-          asset_name: markdown-tool-x86_64-unknown-linux-gnu
-          asset_content_type: application/octet-stream
-      - name: Upload Debian package
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ${{ env.DEB_PATH }}
-          asset_name: ${{ env.DEB_PATH }}
-          asset_content_type: application/x-debian-package
+          files: |
+            target/release/markdown-tool
+            ${{ env.DEB_PATH }}
