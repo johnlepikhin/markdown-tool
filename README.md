@@ -3,6 +3,7 @@
 [![CI](https://github.com/johnlepikhin/markdown-tool/actions/workflows/ci.yml/badge.svg)](https://github.com/johnlepikhin/markdown-tool/actions)
 [![License:
 MIT](https://img.shields.io/crates/l/markdown-tool.svg)](https://github.com/johnlepikhin/markdown-tool/blob/main/LICENSE)
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/johnlepikhin/markdown-tool)
 
 # markdown-tool
 
